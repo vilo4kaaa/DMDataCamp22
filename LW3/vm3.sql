@@ -23,7 +23,7 @@ CREATE TABLE heap_addresses (
     zip       NUMBER,
     PRIMARY KEY (empno,addr_type) 
   )
-  /
+/
   
 CREATE TABLE iot_addresses ( 
     empno REFERENCES emp(empno) ON DELETE CASCADE,
@@ -33,38 +33,32 @@ CREATE TABLE iot_addresses (
     state     VARCHAR2(2),
     zip       NUMBER,
     PRIMARY KEY (empno,addr_type) 
-  ) 
-  ORGANIZATION INDEX
-  /
+  ) ORGANIZATION INDEX
+/
   
 INSERT INTO heap_addresses 
 SELECT empno, 'WORK' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
-
 INSERT INTO iot_addresses 
 SELECT empno , 'WORK' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
 
 INSERT INTO heap_addresses 
 SELECT empno, 'HOME' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
-
 INSERT INTO iot_addresses 
 SELECT empno, 'HOME' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
 
 INSERT INTO heap_addresses 
 SELECT empno, 'PREV' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
-
 INSERT INTO iot_addresses 
 SELECT empno, 'PREV' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
 
 INSERT INTO heap_addresses 
 SELECT empno, 'SCHOOL' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
-
 INSERT INTO iot_addresses 
 SELECT empno, 'SCHOOL' , '123 main street' , 'Washington' , 'DC' , 20123 FROM emp; 
 
 COMMIT; 
 
 EXEC dbms_stats.gather_table_stats( user, 'HEAP_ADDRESSES' ); 
-
 EXEC dbms_stats.gather_table_stats( user, 'IOT_ADDRESSES' ); 
 
 EXPLAIN PLAN FOR
