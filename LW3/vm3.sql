@@ -72,3 +72,7 @@ SELECT * FROM emp, iot_addresses
 WHERE emp.empno = iot_addresses.empno 
 AND emp.empno   = 42;  
 SELECT * FROM TABLE(dbms_xplan.display );
+
+DROP TABLE emp;
+DROP TABLE heap_addresses;
+DROP TABLE iot_addresses;
