@@ -58,13 +58,13 @@ INSERT INTO EMP VALUES
 (7934,'MILLER','CLERK',7782,to_date('23-1-1982','dd-mm-yyyy'),1300,NULL,10);
 COMMIT;
   
-  SELECT * FROM 
-  (SELECT dept_blk, emp_blk, CASE WHEN dept_blk <> emp_blk THEN '*' END flag, deptno 
-  FROM (SELECT dbms_rowid.rowid_block_number( dept.rowid ) dept_blk, dbms_rowid.rowid_block_number( emp.rowid ) emp_blk, dept.deptno 
+SELECT * FROM 
+    (SELECT dept_blk, emp_blk, CASE WHEN dept_blk <> emp_blk THEN '*' END flag, deptno 
+     FROM (SELECT dbms_rowid.rowid_block_number( dept.rowid ) dept_blk, dbms_rowid.rowid_block_number( emp.rowid ) emp_blk, dept.deptno 
         FROM emp , dept 
-        WHERE emp.deptno = dept.deptno) 
+        WHERE emp.deptno = dept.deptno)
   ) ORDER BY deptno;
  
-DROP TABLE emp;
 DROP TABLE dept;
 DROP CLUSTER emp_dept_cluster;
+DROP TABLE emp;
