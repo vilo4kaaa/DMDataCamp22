@@ -13,7 +13,7 @@ SELECT COUNT( * )
    FROM t2 ;
 SET autotrace OFF;
 
-----------------------------
+
 DELETE FROM t2;
 
 SELECT BLOCKS FROM user_segments WHERE segment_name = 'T2';
@@ -23,7 +23,7 @@ SELECT COUNT( * )
    FROM t2 ;
 SET autotrace OFF;
    
-----------------------------  
+
 INSERT INTO t2 ( ID, T_PAD ) 
   VALUES (  1,'1' ); 
 COMMIT; 
@@ -35,7 +35,7 @@ SET autotrace ON;
 SELECT COUNT( * ) 
    FROM t2 ;
    
-----------------------------  
+
 TRUNCATE TABLE t2;  
 
 SELECT BLOCKS FROM user_segments WHERE segment_name = 'T2';
