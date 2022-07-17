@@ -4,7 +4,7 @@
 (Heap, Index, Index Clustered, Hash Clustered)
 
 #### U1M4LW Access and Join Methods
-Full Scan and Index Scan
+(Full Scan and Index Scan)
 
 #### U1M5LW 
 test 
