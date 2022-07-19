@@ -26,6 +26,7 @@ SELECT * FROM scott.emp e FULL OUTER JOIN scott.dept d
 ON e.deptno = d.deptno; 
 
 -- Semi-join
+SET AUTOTRACE ON
 SELECT /* using in */ deptno, dname FROM scott.dept d
 WHERE deptno IN (select deptno from scott.emp e);
 

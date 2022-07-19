@@ -1,0 +1,1 @@
+SELECT * from u_dw_ext_references.t_ext_languages_iso693;
