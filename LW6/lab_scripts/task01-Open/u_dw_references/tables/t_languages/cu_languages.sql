@@ -1,6 +1,9 @@
---drop view u_dw_references.cu_languages;
+/*
 
---==============================================================
+DROP VIEW u_dw_references.cu_languages;
+*/
+
+---------------------------------------------------------------
 -- View: cu_languages
 --==============================================================
 CREATE OR REPLACE VIEW u_dw_references.cu_languages

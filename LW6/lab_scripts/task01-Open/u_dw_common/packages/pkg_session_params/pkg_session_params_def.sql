@@ -1,4 +1,6 @@
---DROP PACKAGE pkg_session_params;
+/*
+DROP PACKAGE pkg_session_params;
+*/
 
 CREATE OR REPLACE PACKAGE U_DW_COMMON.pkg_session_params
 AS

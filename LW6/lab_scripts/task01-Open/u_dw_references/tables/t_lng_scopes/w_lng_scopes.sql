@@ -1,8 +1,10 @@
+/*
 DROP VIEW u_dw_references.w_lng_scopes;
+*/
 
---==============================================================
+---------------------------------------------------------------
 -- View: w_lng_scopes
---==============================================================
+
 CREATE OR REPLACE VIEW u_dw_references.w_lng_scopes
 AS
    SELECT lng_scope_id

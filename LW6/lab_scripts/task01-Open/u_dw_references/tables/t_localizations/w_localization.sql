@@ -1,9 +1,11 @@
-drop view w_localizations;
+/*
+DROP VIEW w_localizations;
+*/
 
---==============================================================
+---------------------------------------------------------------
 -- View: w_localizations                                        
---==============================================================
-create or replace view u_dw_references.w_localizations as
+
+CREATE OR REPLACE VIEW u_dw_references.w_localizations AS
 SELECT localization_id
      , localization_code
      , localization_desc
@@ -13,25 +15,25 @@ SELECT localization_id
      , is_default
   FROM u_dw_references.t_localizations;
 
-comment on column u_dw_references.w_localizations.localization_id is
+COMMENT ON COLUMN u_dw_references.w_localizations.localization_id IS
 'Identificator of Supported References Languages';
 
-comment on column u_dw_references.w_localizations.localization_code is
+COMMENT ON COLUMN u_dw_references.w_localizations.localization_code IS
 'Code of Supported References Languages';
 
-comment on column u_dw_references.w_localizations.localization_desc is
+COMMENT ON COLUMN u_dw_references.w_localizations.localization_desc IS
 'Name of Supported References Languages';
 
-comment on column u_dw_references.w_localizations.localization_desc_ens is
+COMMENT ON COLUMN u_dw_references.w_localizations.localization_desc_ens IS
 'Endonym Name of  Supported References Languages';
 
-comment on column u_dw_references.w_localizations.lng_id is
+COMMENT ON COLUMN u_dw_references.w_localizations.lng_id IS
 'Disabled - FK for Language_Id - Post Mapped by Load PKG';
 
-comment on column u_dw_references.w_localizations.contry_id is
+COMMENT ON COLUMN u_dw_references.w_localizations.contry_id IS
 'Disabled - FK for Country_Id - Post Mapped by Load PKG';
 
-comment on column u_dw_references.w_localizations.is_default is
+COMMENT ON COLUMN u_dw_references.w_localizations.is_default IS
 'Default Language for all Application and Members on DataBase';
 
-grant SELECT on u_dw_references.w_localizations to PUBLIC;
+GRANT SELECT on u_dw_references.w_localizations to PUBLIC;
