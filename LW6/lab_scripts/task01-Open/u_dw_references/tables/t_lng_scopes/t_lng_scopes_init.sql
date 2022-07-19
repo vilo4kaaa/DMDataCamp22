@@ -14,4 +14,4 @@ INSERT INTO u_dw_references.t_lng_scopes  ( lng_scope_id
      VALUES ( 3
             , 'S' );
 
-Commit;            
+COMMIT;            
