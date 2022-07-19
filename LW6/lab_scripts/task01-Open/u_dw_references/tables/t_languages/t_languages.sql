@@ -1,3 +1,4 @@
+/*
 ALTER TABLE u_dw_references.t_languages
    DROP CONSTRAINT fk_t_lng_scopes2t_languages;
 
@@ -11,12 +12,12 @@ ALTER TABLE u_dw_references.t_lng_links
    DROP CONSTRAINT fk_t_languages2t_lng_links_p;
 
 DROP INDEX u_dw_references.idx_lng_3c_code;
-
 DROP TABLE u_dw_references.t_languages CASCADE CONSTRAINTS;
+*/
 
---==============================================================
+---------------------------------------------------------------
 -- Table: t_languages
---==============================================================
+
 CREATE TABLE u_dw_references.t_languages
 (
    lng_id         NUMBER ( 22, 0 ) NOT NULL
@@ -69,9 +70,9 @@ COMMENT ON COLUMN u_dw_references.t_languages.lng_scope_id IS
 COMMENT ON COLUMN u_dw_references.t_languages.lng_desc IS
 'Name of Language';
 
---==============================================================
+---------------------------------------------------------------
 -- Index: idx_lng_3c_code
---==============================================================
+
 CREATE UNIQUE INDEX u_dw_references.idx_lng_3c_code
    ON u_dw_references.t_languages ( lng_3c_code ASC
                                   , lng_scope_id ASC )

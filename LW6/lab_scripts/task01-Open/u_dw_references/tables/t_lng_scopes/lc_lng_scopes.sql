@@ -1,3 +1,4 @@
+/*
 ALTER TABLE u_dw_references.lc_lng_scopes
    DROP CONSTRAINT fk_loc2lng_scopes;
 
@@ -5,10 +6,11 @@ ALTER TABLE u_dw_references.lc_lng_scopes
    DROP CONSTRAINT fk_t_lng_scopes2lc_lng_scopes;
 
 DROP TABLE u_dw_references.lc_lng_scopes CASCADE CONSTRAINTS;
+*/
 
---==============================================================
+----------------------------------------------------------------
 -- Table: lc_lng_scopes
---==============================================================
+
 CREATE TABLE u_dw_references.lc_lng_scopes
 (
    lng_scope_id   NUMBER ( 22, 0 ) NOT NULL
