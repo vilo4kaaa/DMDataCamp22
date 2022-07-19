@@ -6,5 +6,5 @@
 #### U1M4LW Access and Join Methods
 (Full Scan and Index Scan)
 
-#### U1M5LW 
-test 
+#### U1M5LW Access and Join Methods
+(Different Types of Joins)
