@@ -1,6 +1,6 @@
---==============================================================
+---------------------------------------------------------------
 -- Initial Rows: t_localizations
---==============================================================
+
 INSERT INTO u_dw_references.t_localizations  ( localization_id
                             , localization_code
                             , localization_desc
