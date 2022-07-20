@@ -2,7 +2,7 @@
 
 CREATE OR REPLACE DIRECTORY ext_references
 AS
-  '/mnt/ext_references/';
+  '/oracle/u02/oradata/AShumilovdb';
    
 GRANT READ ON DIRECTORY ext_references TO u_dw_ext_references;
 GRANT WRITE ON DIRECTORY ext_references TO u_dw_ext_references;
