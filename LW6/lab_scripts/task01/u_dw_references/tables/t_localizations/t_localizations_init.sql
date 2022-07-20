@@ -1,7 +1,6 @@
----------------------------------------------------------------
 -- Initial Rows: t_localizations
 
-INSERT INTO u_dw_references.t_localizations  ( localization_id
+INSERT INTO t_localizations  ( localization_id
                             , localization_code
                             , localization_desc
                             , localization_desc_ens
@@ -16,7 +15,7 @@ INSERT INTO u_dw_references.t_localizations  ( localization_id
             , NULL
             , NULL );
 
-INSERT INTO u_dw_references.t_localizations ( localization_id
+INSERT INTO t_localizations ( localization_id
                             , localization_code
                             , localization_desc
                             , localization_desc_ens
@@ -31,7 +30,7 @@ INSERT INTO u_dw_references.t_localizations ( localization_id
             , NULL
             , NULL );
 
-INSERT INTO u_dw_references.t_localizations ( localization_id
+INSERT INTO t_localizations ( localization_id
                             , localization_code
                             , localization_desc
                             , localization_desc_ens
@@ -46,7 +45,7 @@ INSERT INTO u_dw_references.t_localizations ( localization_id
             , NULL
             , 1 );
 
-INSERT INTO u_dw_references.t_localizations ( localization_id
+INSERT INTO t_localizations ( localization_id
                             , localization_code
                             , localization_desc
                             , localization_desc_ens
@@ -61,7 +60,7 @@ INSERT INTO u_dw_references.t_localizations ( localization_id
             , NULL
             , NULL );
 
-INSERT INTO u_dw_references.t_localizations ( localization_id
+INSERT INTO t_localizations ( localization_id
                             , localization_code
                             , localization_desc
                             , localization_desc_ens

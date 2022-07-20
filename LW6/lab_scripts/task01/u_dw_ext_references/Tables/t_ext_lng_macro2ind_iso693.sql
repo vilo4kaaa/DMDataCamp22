@@ -3,7 +3,7 @@
 --==============================================================
 -- Table: t_ext_lng_macro2ind_iso693                            
 --==============================================================
-create table u_dw_ext_references.t_ext_lng_macro2ind_iso693 
+CREATE TABLE u_dw_ext_references.t_ext_lng_macro2ind_iso693 
 (
    MACRO_LNG_CODE       VARCHAR2(3 CHAR),
    INDIV_LNG_CODE       VARCHAR2(3 CHAR)
@@ -17,3 +17,4 @@ organization external (
 reject limit unlimited;
 
 
+--select * from u_dw_ext_references.t_ext_lng_macro2ind_iso693;

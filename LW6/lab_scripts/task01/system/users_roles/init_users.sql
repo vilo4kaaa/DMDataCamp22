@@ -1,6 +1,6 @@
 /*
 DROP USER u_dw_data;
-DROP USER u_dw_ext_references;
+DROP USER u_dw_ext_reference;
 DROP USER u_dw_persons;
 DROP USER u_dw_references CASCADE;
 DROP USER u_dw_str_cls;

@@ -21,3 +21,5 @@ ORGANIZATION EXTERNAL
     LOCATION ('iso-639-3.tab')
 )
 REJECT LIMIT UNLIMITED;
+
+--select * from u_dw_ext_references.t_ext_languages_iso693;

@@ -1,7 +1,6 @@
 /*
 ALTER TABLE u_dw_references.lc_lng_types
    DROP CONSTRAINT FK_LOC2LNG_TYPES;
-
 ALTER TABLE u_dw_references.lc_lng_types
    DROP CONSTRAINT FK_T_LNG_TYPES2LC_LNG_TYPES;
    

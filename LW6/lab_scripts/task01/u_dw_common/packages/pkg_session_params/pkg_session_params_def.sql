@@ -1,8 +1,9 @@
+alter session set current_schema=u_dw_common;
 /*
 DROP PACKAGE pkg_session_params;
 */
 
-CREATE OR REPLACE PACKAGE U_DW_COMMON.pkg_session_params
+CREATE OR REPLACE PACKAGE pkg_session_params
 AS
    -- Retrieving Application User - Localization schemes
    --* @param     p_user_name     - Application User unique name

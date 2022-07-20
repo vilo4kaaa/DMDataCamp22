@@ -1,3 +1,4 @@
+alter session set current_schema=u_dw_ext_references;
 CREATE OR REPLACE PACKAGE pkg_load_ext_ref_languages
 -- Package Reload Data From External Sources to DataBase
 --
@@ -22,3 +23,4 @@ AS
    PROCEDURE load_ref_lng_links_macro;
 END;
 /
+

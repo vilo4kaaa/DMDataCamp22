@@ -1,9 +1,9 @@
---drop view u_dw_references.cu_lng_scopes;
-
+--drop table cu_lng_scopes;
+alter session set current_schema=u_dw_references;
 --==============================================================
 -- View: cu_lng_scopes                                          
 --==============================================================
-create or replace view u_dw_references.cu_lng_scopes as
+create or replace view cu_lng_scopes as
 SELECT src.lng_scope_id
      , src.lng_scope_code AS src_scope_code
      , NVL ( lc.lng_scope_code, '-' ) AS lng_scope_code
@@ -15,8 +15,8 @@ SELECT src.lng_scope_id
    AND lc.localization_id(+) = pkg_session_params.get_user_localization_id
 with read only;
 
-comment on column u_dw_references.cu_lng_scopes.lng_scope_id is
+comment on column cu_lng_scopes.lng_scope_id is
 'Idemtificator of Language Scopes - ISO 639-3';
 
-comment on column u_dw_references.cu_lng_scopes.src_scope_code is
+comment on column cu_lng_scopes.src_scope_code is
 'Code of Languages Scopes - ISO 639-3';

@@ -1,9 +1,9 @@
---drop view u_dw_references.cu_lng_types;
-
+--drop view cu_lng_types;
+alter session set current_schema=u_dw_references;
 --==============================================================
 -- View: cu_lng_types                                           
 --==============================================================
-create or replace view u_dw_references.cu_lng_types as
+create or replace view cu_lng_types as
 SELECT src.lng_type_id
      , src.lng_type_code AS src_type_code
      , NVL ( lc.lng_type_code, '-' ) AS lng_type_code
@@ -15,8 +15,8 @@ SELECT src.lng_type_id
    AND lc.localization_id(+) = pkg_session_params.get_user_localization_id
 with read only;
 
-comment on column u_dw_references.cu_lng_types.lng_type_id is
+comment on column cu_lng_types.lng_type_id is
 'Identificator of Language Types - ISO 639-3';
 
-comment on column u_dw_references.cu_lng_types.src_type_code is
+comment on column cu_lng_types.src_type_code is
 'Code of Language Types - ISO 639-3';
