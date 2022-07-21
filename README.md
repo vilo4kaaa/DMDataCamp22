@@ -8,3 +8,6 @@
 
 #### U1M5LW Access and Join Methods
 (Different Types of Joins)
+
+
+#### U1M6LW Star Schema Basics
