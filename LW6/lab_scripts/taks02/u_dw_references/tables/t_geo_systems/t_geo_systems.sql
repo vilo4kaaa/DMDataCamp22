@@ -72,4 +72,3 @@ exception
 end;
 /
 
-SElect * from w_geo_types

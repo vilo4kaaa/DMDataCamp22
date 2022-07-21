@@ -1,4 +1,4 @@
-drop view u_dw_references.w_geo_systems;
+--drop view u_dw_references.w_geo_systems;
 
 --==============================================================
 -- View: w_geo_systems                                          

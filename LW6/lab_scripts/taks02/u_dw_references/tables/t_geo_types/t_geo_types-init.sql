@@ -1,3 +1,5 @@
+alter session set current_schema=u_dw_references;
+
 INSERT INTO w_geo_types ( geo_type_id
                         , geo_type_code
                         , geo_type_desc )

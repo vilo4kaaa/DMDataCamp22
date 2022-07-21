@@ -18,5 +18,6 @@ organization external (
 )
 reject limit unlimited;
 
-comment on table u_dw_ext_references.t_ext_cntr2grouping_iso3166 is
+/* comment on table u_dw_ext_references.t_ext_cntr2grouping_iso3166 is
 'External table for loading - Countries';
+*/

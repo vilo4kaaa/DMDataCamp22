@@ -1,3 +1,4 @@
+/*
 drop trigger u_dw_references.bi_t_geo_parts
 /
 
@@ -10,7 +11,7 @@ alter table u_dw_references.t_geo_parts
 /
 
 drop table u_dw_references.t_geo_parts cascade constraints
-/
+*/
 --
 --==============================================================
 -- Table: t_geo_parts                                           
