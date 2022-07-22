@@ -1,3 +1,5 @@
+alter session set current_schema=u_dw_ext_references;
+
 CREATE OR REPLACE PACKAGE pkg_load_ext_ref_geography
 -- Package Reload Data From External Sources to DataBase - Geography objects
 --

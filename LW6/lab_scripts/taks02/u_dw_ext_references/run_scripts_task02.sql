@@ -1,3 +1,5 @@
+alter session set current_schema=u_dw_ext_references;
+
 BEGIN
    --Transport Countries
    pkg_load_ext_ref_geography.load_cls_languages_alpha3;
@@ -24,7 +26,6 @@ BEGIN
    pkg_load_ext_ref_geography.load_lnk_cntr_grouping;
    pkg_load_ext_ref_geography.load_lnk_cntr2groups;
 END;
-
 
 
 
