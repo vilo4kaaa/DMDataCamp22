@@ -16,9 +16,9 @@ https://docs.google.com/document/d/12Dp0eCS3_XbFLycW0Iz_hg7diJyVagJntNBYIuFRwgQ/
 
 #### U1M7LW Dimension and Facts Basics
 
-#### U1M8LW 
+#### U1M8LW Data Warehouse Architecture
 
-#### U1M9LW 
+#### U1M9LW Partitioning
 
-#### U1M10LW 
+#### U1M10LW Basic Parallel Execution
 
