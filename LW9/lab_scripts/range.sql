@@ -63,7 +63,7 @@ SELECT * FROM range_example;
 SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_5);
 
 INSERT INTO range_example(range_key_column, data )
-    values( to_date( '07-apr-2016 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+    VALUES( to_date( '07-apr-2016 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
   
 SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_5);
 

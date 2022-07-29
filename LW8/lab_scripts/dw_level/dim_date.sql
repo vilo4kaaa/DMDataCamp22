@@ -1,7 +1,7 @@
 alter session set current_schema = DW_DATA;
 
 CREATE TABLE DIM_DATE(
-    TIME_ID                       DATE,       
+    DATE_ID                       DATE,       
     DAY_NAME                      VARCHAR2(44),
     DAY_NUMBER_IN_WEEK            VARCHAR2(1),
     DAY_NUMBER_IN_MONTH           VARCHAR2(2),
@@ -20,5 +20,5 @@ CREATE TABLE DIM_DATE(
     DAYS_IN_CAL_YEAR              NUMBER,     
     BEG_OF_CAL_YEAR               DATE,      
     END_OF_CAL_YEAR               DATE,
-    CONSTRAINT "PK_T.DIM_DATE" PRIMARY KEY(TIME_ID) 
+    CONSTRAINT "PK_T.DIM_DATE" PRIMARY KEY(DATE_ID) 
 );
