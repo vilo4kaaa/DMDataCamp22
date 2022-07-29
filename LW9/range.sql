@@ -13,100 +13,81 @@ PARTITION part_4 VALUES LESS THAN
      (to_date('01/01/2017','dd/mm/yyyy'))
 )
 /
-  
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '15-dec-2013 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
-  
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '01-jan-2014 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
 
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '01-may-2015 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
   
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '07-apr-2016 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+INSERT INTO range_example(range_key_column, data )
+    VALUES( to_date( '15-dec-2013 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
   
-select * from range_example;
+INSERT INTO range_example(range_key_column, data )
+    VALUES( to_date( '01-jan-2014 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
 
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_1);
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_2);
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_3);
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_4);
+INSERT INTO range_example(range_key_column, data )
+    VALUES( to_date( '01-may-2015 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+  
+INSERT INTO range_example(range_key_column, data )
+    VALUES( to_date( '07-apr-2016 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+  
 
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_1);
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_2);
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_3);
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_4);
+
+-- ADD PARTITION
 ALTER TABLE range_example
       ADD PARTITION part_5 VALUES LESS THAN (to_date('01/01/2020','dd/mm/yyyy'));
       
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '11-jan-2019 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+INSERT INTO range_example(range_key_column, data )
+    VALUES( to_date( '11-jan-2019 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
 
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_5);
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_5);
 
------------------
-
+-- DROP PARTITION
 ALTER TABLE RANGE_EXAMPLE DROP PARTITION part_5;
-select * from range_example;
+SELECT * FROM range_example;
 
 -----------------
 ALTER TABLE range_example
       ADD PARTITION part_5 VALUES LESS THAN (to_date('01/01/2020','dd/mm/yyyy'));
       
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '11-jan-2019 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
-
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_5);
+INSERT INTO range_example(range_key_column, data )
+  VALUES( to_date( '11-jan-2019 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
 
 -----------------
 
-ALTER TABLE range_example 
-MERGE PARTITIONS PART_4, PART_5 INTO PARTITION PART_5;
-select * from range_example;
+-- MERGE PARTITIONS
 
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_5);
+ALTER TABLE range_example MERGE PARTITIONS PART_4, PART_5 INTO PARTITION PART_5;
+SELECT * FROM range_example;
 
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '07-apr-2016 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_5);
+
+INSERT INTO range_example(range_key_column, data )
+    values( to_date( '07-apr-2016 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
   
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (part_5);
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (part_5);
 
-_______________
-CREATE TABLESPACE ts_stuff
-DATAFILE '/oracle/u02/oradata/VMasyukdb/db_suff.dat'
-SIZE 150M 
- AUTOEXTEND ON NEXT 10M
- SEGMENT SPACE MANAGEMENT AUTO; 
- 
- 
-ALTER TABLE range_example
-  MOVE PARTITION part_5
-   TABLESPACE ts_stuff;
 
+-- MOVE PARTITON
+ALTER TABLE RANGE_EXAMPLE MOVE PARTITION PART_5
+     TABLESPACE TS_STUFF;
+    
 SELECT partition_name, tablespace_name FROM ALL_TAB_PARTITIONS;
 
-----------------
-
+-- SPLIT PARTITION
 ALTER TABLE RANGE_EXAMPLE SPLIT PARTITION part_3 at (TO_DATE('01/06/2015', 'DD/MM/YYYY')) 
       INTO ( PARTITION sp1, PARTITION sp2);
       
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '03-jun-2015 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
-  
-insert into range_example(range_key_column, data )
-  values
-  ( to_date( '01-may-2015 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
-  
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (sp1);
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (sp2);
-      
+INSERT INTO range_example(range_key_column, data )
+    values( to_date( '03-jun-2015 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
+INSERT INTO range_example(range_key_column, data ) 
+    values( to_date( '03-jul-2015 00:00:00','dd-mon-yyyy hh24:mi:ss' ),'application data...' );
 
-----------------
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (sp1);
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (sp2);
+      
+-- TRUNCATE PARTITION
 ALTER TABLE RANGE_EXAMPLE TRUNCATE PARTITION SP2;
-select to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') from range_example partition (sp2);
-SELECT partition_name, tablespace_name FROM ALL_TAB_PARTITIONS;
+SELECT to_char(range_key_column,'dd-mon-yyyy hh24:mi:ss') FROM range_example partition (sp2);
+
+DROP TABLE RANGE_EXAMPLE;
