@@ -43,8 +43,7 @@ AS
     FROM movie_objects objects
     START WITH object_parent_item IS NULL
     CONNECT BY PRIOR object_item = object_parent_item;
-   -- ORDER SIBLINGS BY object_item;
-
+    ORDER SIBLINGS BY object_item;
 
 SELECT * FROM t_movie_de;
 
