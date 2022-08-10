@@ -30,6 +30,7 @@ CREATE USER DW_CL
   IDENTIFIED BY "%PWD%"
     DEFAULT TABLESPACE ts_dw_cl_01;  
 GRANT CONNECT,CREATE VIEW,RESOURCE TO DW_CL;
+ALTER USER DW_CL quota unlimited on ts_dw_cl_01; 
 
 -- Data warehouse Level
 -- User: DW_DATA
