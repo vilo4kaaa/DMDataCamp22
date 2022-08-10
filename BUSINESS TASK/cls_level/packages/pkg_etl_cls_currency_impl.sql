@@ -5,22 +5,19 @@ AS
 
       CURSOR cursor_cls_currency
       IS
-         SELECT DISTINCT CURRENCY_ID, CURRENCY_NAME, CURRENCY_COUNTRY_CODE, EXCHANGE_RATE
+         SELECT DISTINCT CURRENCY_NAME, CURRENCY_COUNTRY_CODE, EXCHANGE_RATE
            FROM SA_CURRENCIES_DATA.SA_T_CURRENCY
-           WHERE CURRENCY_ID IS NOT NULL 
-           AND CURRENCY_NAME IS NOT NULL
+           WHERE CURRENCY_NAME IS NOT NULL
            AND CURRENCY_COUNTRY_CODE IS NOT NULL
            AND EXCHANGE_RATE IS NOT NULL;
    BEGIN
    EXECUTE IMMEDIATE 'TRUNCATE TABLE CLS_T_CURRENCY';
       FOR i IN cursor_cls_currency LOOP
          INSERT INTO DW_CL.CLS_T_CURRENCY( 
-                        CURRENCY_ID, 
                         CURRENCY_NAME, 
                         CURRENCY_COUNTRY_CODE, 
                         EXCHANGE_RATE)
               VALUES ( 
-                i.CURRENCY_ID, 
                 i.CURRENCY_NAME, 
                 i.CURRENCY_COUNTRY_CODE, 
                 i.EXCHANGE_RATE);
