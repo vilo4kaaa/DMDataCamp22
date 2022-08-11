@@ -1,7 +1,8 @@
 alter session set current_schema = DW_CL;
 
+-- DROP TABLE cls_t_theaters;
+
 CREATE TABLE CLS_T_THEATERS(
-    THEATER_ID NUMBER,  
     COUNTRY_CODE VARCHAR2 (10),
     CITY VARCHAR2 (50),
     THEATER_NAME VARCHAR2 (100),
