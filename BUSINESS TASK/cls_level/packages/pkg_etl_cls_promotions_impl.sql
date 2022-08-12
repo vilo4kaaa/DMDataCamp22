@@ -11,13 +11,15 @@ AS
    BEGIN
    EXECUTE IMMEDIATE 'TRUNCATE TABLE CLS_T_PROMOTIONS';
       FOR i IN cursor_cls_promotions LOOP
-         INSERT INTO DW_CL.CLS_T_PROMOTIONS( DISCOUNT )
-              VALUES ( i.DISCOUNT);
+         INSERT INTO DW_CL.CLS_T_PROMOTIONS( PROMOTION_NUM, DISCOUNT )
+              VALUES ( SEQ_PROM_NUM.NEXTVAL, i.DISCOUNT);
          EXIT WHEN cursor_cls_promotions%NOTFOUND;
       END LOOP;
       COMMIT;
    END load_cls_promotions;
 END pkg_etl_cls_promotions;
+
+
 
 alter session set current_schema = DW_CL;
 EXEC pkg_etl_cls_promotions.load_cls_promotions;
