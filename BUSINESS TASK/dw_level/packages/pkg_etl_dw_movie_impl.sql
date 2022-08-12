@@ -11,8 +11,6 @@ AS
 	
 	   ALL_INF BIG_CURSOR;
        
-       
-       
        MOVIE_NAME CURSOR_VARCHAR;
        MOVIE_YEAR CURSOR_VARCHAR;
        MOVIE_LEVEL1 CURSOR_VARCHAR;
