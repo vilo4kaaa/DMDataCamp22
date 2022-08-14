@@ -5,7 +5,7 @@ AS
 
       CURSOR cursor_cls_showings
       IS
-         SELECT DISTINCT THEATER_ID, MOVIE_ID, SHOWING_TYPE, SHOWING_CAPACITY, TICKET_PRICE 
+         SELECT DISTINCT THEATER_ID, MOVIE_ID, SHOWING_TYPE, SHOWING_CAPACITY, TICKET_PRICE
            FROM SA_THEATER_DATA.SA_T_SHOWINGS
            WHERE THEATER_ID IS NOT NULL
            AND MOVIE_ID IS NOT NULL
@@ -15,17 +15,14 @@ AS
    EXECUTE IMMEDIATE 'TRUNCATE TABLE CLS_T_SHOWINGS';
       FOR i IN cursor_cls_showings LOOP
          INSERT INTO DW_CL.CLS_T_SHOWINGS( 
-            THEATER_ID, 
-            MOVIE_ID, 
-            SHOWING_TYPE, 
-            SHOWING_CAPACITY, 
-            TICKET_PRICE )
+            THEATER_ID, MOVIE_ID, SHOWING_TYPE, SHOWING_CAPACITY, TICKET_PRICE, SHOW_NUM)
               VALUES (
               i.THEATER_ID, 
               i.MOVIE_ID, 
               i.SHOWING_TYPE, 
               i.SHOWING_CAPACITY, 
-              i.TICKET_PRICE );
+              i.TICKET_PRICE,
+               SEQ_SHOW_NUM.NEXTVAL);
          EXIT WHEN cursor_cls_showings%NOTFOUND;
       END LOOP;
       COMMIT;
