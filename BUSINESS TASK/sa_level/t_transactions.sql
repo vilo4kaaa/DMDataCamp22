@@ -11,12 +11,12 @@ GRANT SELECT ON SA_T_THEATERS TO SA_THEATER_DATA;
 GRANT SELECT ON SA_T_MOVIE TO SA_THEATER_DATA;
 
 
-
+describe SA_THEATER_DATA.transactions;
 drop table transactions;
 
 CREATE TABLE transactions
   AS(
-select a.TRANSACTION_DATE, sa_t_showings.showing_type, SA_EXT_REF_DATA.sa_t_theaters.country_code, SA_EXT_REF_DATA.sa_t_theaters.theater_name, 
+select a.TRANSACTION_DATE, sa_t_showings.showing_id, SA_EXT_REF_DATA.sa_t_theaters.country_code, SA_EXT_REF_DATA.sa_t_theaters.theater_name, 
     SA_EXT_REF_DATA.sa_t_movie.movie_name, a.sold_tickets, SA_T_SHOWINGS.ticket_price AS TICKET_PRICE, SA_T_PROMOTIONS.DISCOUNT AS DISCOUNT, 
     (a.sold_tickets *SA_T_SHOWINGS.ticket_price * (1-SA_T_PROMOTIONS.DISCOUNT)) AS TICKETS_REVENUE, SA_CURRENCIES_DATA.SA_T_CURRENCY.currency_name AS currency FROM(
         select b.* , TRUNC(DBMS_RANDOM.VALUE( 1,101)) as SHOWING, TRUNC(DBMS_RANDOM.VALUE( 1,101)) as SOLD_TICKETS, TRUNC(DBMS_RANDOM.VALUE( 1,101)) as PROMOTION
@@ -45,7 +45,8 @@ FROM transactions
 GROUP BY EXTRACT(MONTH FROM TRANSACTION_DATE)
 ORDER BY month;
 
-GRANT SELECT ON SA_T_CURRENCY TO SA_THEATER_DATA;
-GRANT SELECT ON SA_T_PROMOTIONS TO SA_THEATER_DATA;
-GRANT SELECT ON SA_T_THEATERS TO SA_THEATER_DATA;
-GRANT SELECT ON SA_T_MOVIE TO SA_THEATER_DATA;
+
+GRANT SELECT ON transactions TO DW_CL;
+
+SELECT * FROM transactions;
+
