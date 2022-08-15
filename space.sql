@@ -40,3 +40,5 @@ SELECT SUM (bytes) / 1024 / 1024 / 1024 AS GB FROM dba_data_files;
 -- space by data
 SELECT SUM (bytes)/1024/1024/1024 AS GB FROM dba_segments;
 
+purge recyclebin;
+

@@ -1,5 +1,6 @@
 CREATE OR REPLACE PACKAGE body pkg_etl_dw_currency
-AS  
+--AS  
+/*
   PROCEDURE load_dw_currency
    AS
      BEGIN
@@ -119,6 +120,59 @@ PROCEDURE load_dw_currency_ref_cursor
     COMMIT;
     END;
    END load_dw_currency_ref_cursor;
+   */
+AS PROCEDURE load_dw_currency_num_cursor
+   AS
+   BEGIN
+      DECLARE
+	   
+       TYPE BIG_CURSOR IS REF CURSOR;
+       TYPE T_REC_CURRENCY IS RECORD
+       (
+       CURRENCY_NAME VARCHAR(20),
+       CURRENCY_COUNTRY_CODE VARCHAR2(20),
+       EXCHANGE_RATE DECIMAL(5,2),
+       CURRENCY_NAME_stage VARCHAR(20),
+       CURRENCY_ID NUMBER );
+       
+       TYPE t_CURRENCY  IS TABLE OF T_REC_CURRENCY  ;
+       ALL_INF BIG_CURSOR;
+	   record_CURRENCY  t_CURRENCY ;
+	   curid NUMBER ( 25 );
+	BEGIN
+	   OPEN ALL_INF FOR
+	       SELECT source_CL.CURRENCY_NAME AS CURRENCY_NAME_source_CL
+                 , source_CL.CURRENCY_COUNTRY_CODE AS CURRENCY_COUNTRY_CODE_source_CL
+                 , source_CL.EXCHANGE_RATE AS EXCHANGE_RATE_source_CL
+	             , stage.CURRENCY_NAME AS CURRENCY_NAME_stage
+                 , STAGE.CURRENCY_ID AS CURRENCY_ID
+	          FROM (SELECT DISTINCT * FROM DW_CL.CLS_T_CURRENCY) source_CL
+                     LEFT JOIN DW_DATA.dim_currency stage
+                     ON (source_CL.CURRENCY_NAME = stage.CURRENCY_NAME);
+
+	
+	   FETCH ALL_INF
+	   BULK COLLECT INTO record_CURRENCY ;
+	   
+       curid := dbms_sql.to_cursor_number ( ALL_INF );
+	   dbms_sql.close_cursor ( curid );
+       
+	   FOR i IN record_CURRENCY.FIRST .. record_CURRENCY.LAST LOOP
+	      IF ( record_CURRENCY(i).CURRENCY_ID IS NULL ) THEN
+	         INSERT INTO dim_currency(  CURRENCY_ID,
+                                                    CURRENCY_NAME,
+                                                    CURRENCY_COUNTRY_CODE,
+                                                    EXCHANGE_RATE )
+	              VALUES (  SEQ_CURRENCY.NEXTVAL, 
+                            record_CURRENCY(i).CURRENCY_NAME, 
+                            record_CURRENCY(i).CURRENCY_COUNTRY_CODE, 
+                            record_CURRENCY(i).EXCHANGE_RATE );
+	
+	         COMMIT;
+	      END IF;
+	   END LOOP;
+	END;
+   END load_dw_currency_num_cursor;
    
 END pkg_etl_dw_currency;
 
@@ -129,4 +183,5 @@ EXEC pkg_etl_dw_currency.load_dw_currency_num_cursor;
 SELECT * FROM dim_currency;
 
 DROP TABLE dim_currency CASCADE CONSTRAINTS;
+
 
