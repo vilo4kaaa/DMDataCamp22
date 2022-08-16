@@ -18,5 +18,5 @@ GROUP BY GROUPING SETS(
 
 EXECUTE DBMS_MVIEW.REFRESH('movie_showings_month');
 
-SELECT * FROM  movie_showings_month;
+SELECT * FROM  movie_showings_month ORDER BY 1,4 DESC;
 
