@@ -1,3 +1,5 @@
+alter session set current_schema = SA_THEATER_DATA;
+
 SELECT MOVIE_NAME AS MOVIE, COUNTRY_CODE, SOLD_TICKETS
     FROM transactions
     WHERE TRUNC ( TRANSACTION_DATE, 'mm' ) = TO_DATE ( '06.01.21', 'MM.DD.YY' ) AND COUNTRY_CODE = 'BLR'
