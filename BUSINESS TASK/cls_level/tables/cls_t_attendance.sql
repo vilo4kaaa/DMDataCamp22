@@ -7,8 +7,9 @@ CREATE TABLE CLS_T_ATTENDANCE(
     THEATER_NAME           VARCHAR2(100), 
     MOVIE_NAME             VARCHAR2(100), 
     SOLD_TICKETS           NUMBER,        
-    TICKET_PRICE           NUMBER,        
-    DISCOUNT               NUMBER(3,2),   
+    TICKET_PRICE           NUMBER, 
+    PROMOTION_NUM          NUMBER,
+    DISCOUNT               NUMBER(3,2),
     TICKETS_REVENUE        NUMBER,        
     CURRENCY               VARCHAR2(20) 
 );

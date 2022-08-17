@@ -1,5 +1,7 @@
 alter session set current_schema = DW_DATA;
 
+drop TABLE FCT_ATTENDANCE;
+
 CREATE TABLE FCT_ATTENDANCE(
     ATTENDANCE_ID NUMBER,
     TRANSACTION_DATE       DATE,          
@@ -8,7 +10,7 @@ CREATE TABLE FCT_ATTENDANCE(
     THEATER_ID             NUMBER, 
     MOVIE_ID               NUMBER,
     SOLD_TICKETS           NUMBER,        
-    TICKET_PRICE           NUMBER,        
+    TICKET_PRICE           NUMBER,
     PROMOTION_ID           NUMBER,   
     TICKETS_REVENUE        NUMBER, 
     CURRENCY_ID            NUMBER,

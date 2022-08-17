@@ -29,7 +29,7 @@ AS
                      JOIN DW_DATA.DIM_SHOWING sh
                      ON (cl.showing_id = sh.showing_id)
                     JOIN DW_DATA.dim_promotion prom
-                        ON (cl.discount = prom.discount);
+                        ON ( cl.promotion_num = prom.promotion_num);
     
     BEGIN
         OPEN c;
@@ -79,3 +79,25 @@ select * from dw_data.FCT_ATTENDANCE;
 truncate table dw_data.FCT_ATTENDANCE;
 
 
+ SELECT 1,
+                    cl.TRANSACTION_DATE,
+                    sh.SHOWING_ID,
+                    th.COUNTRY_CODE,
+                    th.THEATER_ID,
+                    mov.MOVIE_ID,
+                    cl.SOLD_TICKETS,
+                    cl.TICKET_PRICE,
+                    prom.PROMOTION_ID,
+                    cl.TICKETS_REVENUE,
+                    cur.CURRENCY_ID
+	          FROM (SELECT DISTINCT * FROM dw_cl.CLS_T_ATTENDANCE) cl
+                    LEFT JOIN DW_DATA.DIM_MOVIE mov
+                     ON (cl.movie_name = mov.movie_name)
+                    LEFT JOIN DW_DATA.DIM_THEATER th
+                     ON (cl.theater_name = th.theater_name AND cl.country_code = th.country_code)
+                     LEFT JOIN DW_DATA.dim_currency cur
+                     ON (cl.currency = cur.currency_name AND cl.country_code = cur.currency_country_code)
+                     JOIN DW_DATA.DIM_SHOWING sh
+                     ON (cl.showing_id = sh.showing_id)
+                    JOIN DW_DATA.dim_promotion prom
+                        ON ( cl.promotion_num = prom.promotion_num);

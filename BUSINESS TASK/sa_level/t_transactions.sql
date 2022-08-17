@@ -17,9 +17,9 @@ drop table transactions;
 CREATE TABLE transactions
   AS(
 select a.TRANSACTION_DATE, sa_t_showings.showing_id, SA_EXT_REF_DATA.sa_t_theaters.country_code, SA_EXT_REF_DATA.sa_t_theaters.theater_name, 
-    SA_EXT_REF_DATA.sa_t_movie.movie_name, a.sold_tickets, SA_T_SHOWINGS.ticket_price AS TICKET_PRICE, SA_T_PROMOTIONS.DISCOUNT AS DISCOUNT, 
+    SA_EXT_REF_DATA.sa_t_movie.movie_name, a.sold_tickets, SA_T_SHOWINGS.ticket_price AS TICKET_PRICE, SA_PROMOTION_DATA.SA_T_PROMOTIONS.PROMOTION_NUM AS PROMOTION_NUM, SA_T_PROMOTIONS.DISCOUNT AS DISCOUNT, 
     (a.sold_tickets *SA_T_SHOWINGS.ticket_price * (1-SA_T_PROMOTIONS.DISCOUNT)) AS TICKETS_REVENUE, SA_CURRENCIES_DATA.SA_T_CURRENCY.currency_name AS currency FROM(
-        select b.* , TRUNC(DBMS_RANDOM.VALUE( 1,101)) as SHOWING, TRUNC(DBMS_RANDOM.VALUE( 1,101)) as SOLD_TICKETS, TRUNC(DBMS_RANDOM.VALUE( 1,101)) as PROMOTION
+        select b.* , TRUNC(DBMS_RANDOM.VALUE( 1,101)) as SHOWING, TRUNC(DBMS_RANDOM.VALUE( 1,101)) as SOLD_TICKETS, TRUNC(DBMS_RANDOM.VALUE( 1,11)) as PROMOTION
         FROM
         (SELECT TRUNC(TO_DATE( '09/08/2020', 'DD/MM/YYYY' )+ 
             TRUNC(DBMS_RANDOM.VALUE( 1, (to_date('03/08/2022', 'DD/MM/YYYY') - to_date('09/08/2020', 'DD/MM/YYYY')+1)))) TRANSACTION_DATE, rownum as rn FROM dual
@@ -30,9 +30,9 @@ LEFT JOIN SA_THEATER_DATA.sa_t_showings on SHOWING = sa_t_showings.showing_id
 LEFT JOIN SA_EXT_REF_DATA.sa_t_theaters on sa_t_showings.theater_id = SA_EXT_REF_DATA.sa_t_theaters.theater_id
 LEFT JOIN SA_EXT_REF_DATA.sa_t_movie on sa_t_showings.movie_id = SA_EXT_REF_DATA.sa_t_movie.movie_id
 LEFT JOIN SA_CURRENCIES_DATA.SA_T_CURRENCY ON SA_EXT_REF_DATA.sa_t_theaters.COUNTRY_CODE = SA_T_CURRENCY.CURRENCY_COUNTRY_CODE
-LEFT JOIN SA_PROMOTION_DATA.SA_T_PROMOTIONS on PROMOTION = SA_T_PROMOTIONS.PROMOTION_ID);
+LEFT JOIN SA_PROMOTION_DATA.SA_T_PROMOTIONS on PROMOTION = SA_T_PROMOTIONS.PROMOTION_NUM AND SA_T_PROMOTIONS.VALID_FROM <= TRANSACTION_DATE);
 
-SELECT * FROM transactions ORDER BY TRANSACTION_DATE;
+SELECT * FROM transactions ORDER BY discount;
 
 SELECT COUNT(*) FROM transactions;
 
@@ -48,5 +48,6 @@ ORDER BY month;
 
 GRANT SELECT ON transactions TO DW_CL;
 
-SELECT * FROM transactions;
+
+SELECT * FROM transactions WHERE PROMOTION_NUM IS NULL;
 
