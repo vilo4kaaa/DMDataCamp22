@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE body pkg_etl_dw_currency
---AS  
-/*
+AS  
+
   PROCEDURE load_dw_currency
    AS
      BEGIN
@@ -65,7 +65,7 @@ CREATE OR REPLACE PACKAGE body pkg_etl_dw_currency
 	END;
    END load_dw_currency;
    
-   
+/*
    
 PROCEDURE load_dw_currency_ref_cursor
    AS
@@ -120,7 +120,7 @@ PROCEDURE load_dw_currency_ref_cursor
     COMMIT;
     END;
    END load_dw_currency_ref_cursor;
-   */
+   
 AS PROCEDURE load_dw_currency_num_cursor
    AS
    BEGIN
@@ -173,13 +173,14 @@ AS PROCEDURE load_dw_currency_num_cursor
 	   END LOOP;
 	END;
    END load_dw_currency_num_cursor;
+   */
    
 END pkg_etl_dw_currency;
 
 
---EXEC pkg_etl_dw_currency.load_dw_currency;
+EXEC pkg_etl_dw_currency.load_dw_currency;
 --EXEC pkg_etl_dw_currency.load_dw_currency_ref_cursor;
-EXEC pkg_etl_dw_currency.load_dw_currency_num_cursor;
+--EXEC pkg_etl_dw_currency.load_dw_currency_num_cursor;
 SELECT * FROM dim_currency;
 
 DROP TABLE dim_currency CASCADE CONSTRAINTS;
