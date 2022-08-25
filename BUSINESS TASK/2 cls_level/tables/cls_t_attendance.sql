@@ -20,3 +20,5 @@ drop table CLS_T_ATTENDANCE;
 GRANT SELECT ON CLS_T_ATTENDANCE TO DW_DATA;
 
 select count(*) from DW_CL.CLS_T_ATTENDANCE;
+
+select * from DW_CL.CLS_T_ATTENDANCE order by 2;

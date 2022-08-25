@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="GARFO_SQLEXPRESS.AdventureWorks2012"
+  DTS:DTSID="{A3B071CC-059D-4AA8-8285-603D94A82BDB}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=GARFO\SQLEXPRESS;Initial Catalog=AdventureWorks2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-LW1-{A3B071CC-059D-4AA8-8285-603D94A82BDB}GARFO\SQLEXPRESS.AdventureWorks2012;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

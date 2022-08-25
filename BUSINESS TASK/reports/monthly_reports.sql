@@ -21,6 +21,7 @@ ORDER BY month, country_code, SUM(SOLD_TICKETS) DESC;
 SELECT TRUNC(transaction_date, 'MM') AS month, DECODE(GROUPING(movie_name), 1, 'All movies', movie_name) AS movie_name, 
     COUNT(*) AS movie_showing, SUM(SOLD_TICKETS) AS tickets
 FROM transactions
+
 GROUP BY GROUPING SETS(
     (TRUNC(transaction_date, 'MM'), movie_name),
     (TRUNC(transaction_date, 'MM')))

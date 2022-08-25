@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/25/2022 11:42:04 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GARFO"
+  DTS:CreatorName="GARFO\Asus"
+  DTS:DTSID="{F3DC50DC-9975-4BB5-B004-69FF1B757D92}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.694.0"
+  DTS:LocaleID="3072"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{EB2DD320-B644-4207-BB42-7608F483AD86}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>
